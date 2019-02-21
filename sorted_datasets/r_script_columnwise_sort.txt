@@ -1,0 +1,17 @@
+
+#filepath - path to original csv file
+#folderpath - path to folder for saving new files
+#colname - name of col which has to be sorted entry-wise
+
+
+bankNew = read.csv("filepath")
+#bankNew is the large dataframe containing data
+#Get the list of unique names
+for (name in levels(bankNew$colname)){
+  #Subset the data
+  tmp=subset(bankNew,colname==name)
+  #Create a new filename for each - the folder should already exist
+  fn=paste('folderpath',gsub(' ','',name), '.csv',sep='')
+  #Save the CSV file containing separate data
+  write.csv(tmp,fn,row.names=FALSE)
+}
